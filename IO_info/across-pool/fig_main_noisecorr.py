@@ -9,7 +9,7 @@ from plottingtools import *
 from managingtools import *
 from lif import *
 from matplotlib.pyplot import *
-import rc_parameters
+import rc_parameters 
 
 
 [tau, tau_sampling, Rin, noisecorr, outputrate_stim1, stdout_stim1, CVrateout_stim1, outsvmacc, insvmacc] \
