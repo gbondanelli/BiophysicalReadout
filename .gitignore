@@ -2,3 +2,5 @@
 data/data_IO_info/*
 data/data_pearson_correlations/*
 data/data_readouts/*
+*.npy
+*.pkl
