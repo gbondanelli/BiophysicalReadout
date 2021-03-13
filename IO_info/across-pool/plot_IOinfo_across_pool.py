@@ -1,5 +1,5 @@
 import sys
-base_directory = '/Users/giuliobondanelli/OneDrive - Fondazione Istituto Italiano Tecnologia/Code/code_Valente21_github'
+base_directory = '/Users/giuliobondanelli/OneDrive - Fondazione Istituto Italiano Tecnologia/Code/code_Valente21_to_share'
 sys.path.insert(0,base_directory + '/modules_')
 from numpy import *
 from encdec import *
@@ -13,7 +13,7 @@ import rc_parameters
 
 
 [tau, tau_sampling, Rin, noisecorr, outputrate_stim1, stdout_stim1, CVrateout_stim1, outsvmacc, insvmacc] \
-= open_pickle(base_directory+ '/data/data_across_pool_corr.pkl')
+= open_pickle(base_directory+ '/data/data_IO_info/data_across_pool_corr.pkl')
 
 n_trials, n_in, n_tau, n_corr, n_tausampling = insvmacc.shape
 
@@ -67,7 +67,6 @@ xlim([0,1])
 # ylim([.559,.57])
 # yticks([.56,.565,.57],[r'$56.0$',r'$56.5$',r'$57.0$'])
 tight_layout()
-# savefig('../../Valente_NN/figs/info_limiting_spatial.pdf',transparent=True)
 
 # Output info
 figure(figsize=(1.6,1.6))
@@ -101,7 +100,6 @@ xlim([0,1])
 ylims = ax.get_ylim()
 ylim(ylims)
 tight_layout()
-# savefig('../../Valente_NN/figs/output_mean_var_gain_spatial.pdf',transparent=True)
 
 # Normalized CV
 figure(figsize=(1.2,1.6))
@@ -115,7 +113,6 @@ ylabel('Coeff. of variation (norm.)', fontsize=7)
 xlabel(r'Noise corr. $\alpha$', fontsize=7)
 xticks([0,.5,1],[r'$0$','$0.5$',r'$1$'])
 tight_layout()
-# savefig('../../Valente_NN/figs/CV_spatial.pdf',transparent=True)
 
 # Transmission Gain
 figure(figsize=(1.6,1.6))
@@ -129,5 +126,7 @@ ylabel('Transmission gain (\%)', fontsize=7)
 xlabel(r'Noise corr. $\alpha$', fontsize=7)
 xticks([0,.5,1],[r'$0$','$0.5$',r'$1$'])
 tight_layout()
-# savefig('../../Valente_NN/figs/Transmission_gain_spatial.pdf',transparent=True)
+
+
+##
 

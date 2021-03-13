@@ -1,5 +1,5 @@
 import sys
-base_directory = '/Users/giuliobondanelli/OneDrive - Fondazione Istituto Italiano Tecnologia/Code/code_Valente21_github'
+base_directory = '/Users/giuliobondanelli/OneDrive - Fondazione Istituto Italiano Tecnologia/Code/code_Valente21_to_share'
 sys.path.insert(0,base_directory + '/modules_')
 from numpy import *
 from encdec import *
@@ -11,13 +11,13 @@ from lif import *
 from matplotlib.pyplot import *
 import rc_parameters
 
-##
+
 [tau, tau_sampling, Rin, alpha, tau_lowpass, outputrate_stim1, stdout_stim1, CVrateout_stim1, outsvmacc, insvmacc] \
-= open_pickle('../model_info_correlations/results/data_temporal_corr.pkl')
+= open_pickle(base_directory + '/data/data_IO_info/data_across_time_corr.pkl')
 
 n_trials, n_in, n_tau, n_corr, n_tausampling, n_taulp = insvmacc.shape
 
-##
+
 InputInfo = empty((n_trials, n_in,n_tau,n_corr,n_tausampling, n_taulp))
 OutputInfo = empty((n_trials, n_in,n_tau,n_corr,n_tausampling, n_taulp))
 OutputRateGain = empty((n_trials, n_in,n_tau,n_corr,n_tausampling, n_taulp))
@@ -50,11 +50,11 @@ for i_lp in range(n_taulp):
                                                                               / mean(
                                 abs((outsvmacc[:, i_in, i_tau, i_c, i_s, 0]-.5)/(insvmacc[:, i_in, i_tau, i_c, i_s, 0]-.5)))-1)
 
-##
+
 i_in = 0
 i_tau = 0
 i_s = 0
-i_c = 2
+i_c = 0
 # Input info
 
 figure(figsize=(1.6,1.6))
@@ -135,4 +135,7 @@ xlabel(r'Temp. corr. $\tau_C$(ms)', fontsize=7)
 xlim([0.005,0.1])
 xticks([0.005,0.05, 0.1],[r'$5$',r'$50$', r'$100$'])
 tight_layout()
+
+
+##
 
