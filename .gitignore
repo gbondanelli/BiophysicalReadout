@@ -1,12 +1,6 @@
 .idea/
-<<<<<<< HEAD
-<<<<<<< HEAD
 data/data_IO_info/*
 data/data_pearson_correlations/*
 data/data_readouts/*
 *.npy
 *.pkl
-=======
->>>>>>> 2e55d6e94cca5ce0539e706b8925151e80a2762b
-=======
->>>>>>> e13b1ff87bc19162b22ace049a2c196b6bca2120
