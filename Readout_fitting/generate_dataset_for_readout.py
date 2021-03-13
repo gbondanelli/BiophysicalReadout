@@ -1,5 +1,6 @@
 import sys
-sys.path.insert(0,'../encoding_decoding')
+base_directory = '/Users/giuliobondanelli/OneDrive - Fondazione Istituto Italiano Tecnologia/Code/code_Valente21_to_share'
+sys.path.insert(0,base_directory + '/modules_')
 from numpy import *
 from encdec import *
 from stattools import *
@@ -16,17 +17,18 @@ import warnings
 warnings.simplefilter("ignore")
 
 [tau, tau_sampling, tau_lowpass, Rin, noisecorr, outputrate_stim1, varout_stim1, CVrateout_stim1, outsvmacc, insvmacc] \
-= open_pickle('./datasets/spatial/dataset_noisecorr.pkl')
+= open_pickle(base_directory + '/data/data_pearson_correlations/dataset_alpha.pkl')
 
-STI1 = load('./datasets/spatial/sti1.npy',allow_pickle = True)
-STI2 = load('./datasets/spatial/sti2.npy',allow_pickle = True)
-STIM = load('./datasets/spatial/Stim.npy',allow_pickle = True)
-PRED_STIM = load('./datasets/spatial/Pred_Stim.npy',allow_pickle = True)
+STI1 = load(base_directory + '/data/data_pearson_correlations/sti1.npy',allow_pickle = True)
+STI2 = load(base_directory + '/data/data_pearson_correlations/sti2.npy',allow_pickle = True)
+STIM = load(base_directory + '/data/data_pearson_correlations/Stim.npy',allow_pickle = True)
+PRED_STIM = load(base_directory + '/data/data_pearson_correlations/Pred_Stim.npy',allow_pickle = True)
 
+##
 n_trials, n_in, n_tau, n_corr, n_tausampling, n_taulp = insvmacc.shape
 t = linspace(0,100000,100000000+1)
 
-i_in    = 1
+i_in    = 0
 i_tau   = 0
 i_s     = 0
 dt      = t[1] - t[0]
@@ -36,7 +38,7 @@ n_lags  = len(lags)
 
 # correlated data
 i_c = 0
-i_lp = 1
+i_lp = 0
 predicted_stim = PRED_STIM[i_in, i_tau, i_c, i_s, i_lp]
 stimuli = STIM[i_in, i_tau, i_c, i_s, i_lp]
 frac=0.5
@@ -81,8 +83,11 @@ for i_sub in range(n_subsamplings):
                 Sdec[i_sub,t1,t2,:] = Sp[:,i_trial]
                 cons[i_sub,t1,t2,:] = (Sp1[:,i_trial] == Sp2[:,i_trial]).astype(float)
                 choices[i_sub,t1,t2,:] = predicted_stim[idx,i_trial]
+##
+save(base_directory + '/data/data_readouts/S_eq_choices.npy', S)
+save(base_directory + '/data/data_readouts/Sdec_eq_choices.npy', Sdec)
+save(base_directory + '/data/data_readouts/cons_eq_choices.npy', cons)
+save(base_directory + '/data/data_readouts/choices_eq_choices.npy', choices)
 
-save('./datasets/spatial/dataset_for_readout/S_eq_choices_v2.npy', S)
-save('./datasets/spatial/dataset_for_readout/Sdec_eq_choices_v2.npy', Sdec)
-save('./datasets/spatial/dataset_for_readout/cons_eq_choices_v2.npy', cons)
-save('./datasets/spatial/dataset_for_readout/choices_eq_choices_v2.npy', choices)
+##
+
