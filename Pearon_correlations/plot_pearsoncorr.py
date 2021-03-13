@@ -10,7 +10,7 @@ from managingtools import *
 from lif import *
 from matplotlib.pyplot import *
 import rc_parameters
-from scipy.stats import ttest_ind
+from scipy.stats import ttest_ind    
 
 ##
 
