@@ -1,5 +1,5 @@
 import sys
-base_directory = '/Users/giuliobondanelli/OneDrive - Fondazione Istituto Italiano Tecnologia/Code/code_Valente21_github'
+base_directory = '/Users/giuliobondanelli/OneDrive - Fondazione Istituto Italiano Tecnologia/Code/code_Valente21_to_share'
 sys.path.insert(0,base_directory + '/modules_')
 from numpy import *
 from encdec import *
@@ -12,8 +12,8 @@ from matplotlib.pyplot import *
 import rc_parameters
 ##
 N       = 2
-T       = 50000 #
-nsteps  = 50000000
+T       = 50000
+nsteps  = T * 1000 #
 t       = linspace(0, T, nsteps)
 dt = t[1] - t[0]
 signal_axis = array([1., 1.])/sqrt(2)
@@ -84,4 +84,7 @@ for i_s in range(len(tau_sampling)):
 
 objlist = [tau, tau_sampling, Rin, alpha, outputrate_stim1, stdout_stim1, CVrateout_stim1, outsvmacc, insvmacc]
 
-save_pickle(base_directory + '/data/data_across_pool_corr.pkl', objlist)
+save_pickle(base_directory + '/data/data_IO_info/data_across_pool_corr.pkl', objlist)
+
+##
+

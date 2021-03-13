@@ -1,5 +1,5 @@
 import sys
-base_directory = '/Users/giuliobondanelli/OneDrive - Fondazione Istituto Italiano Tecnologia/Code/code_Valente21_github'
+base_directory = '/Users/giuliobondanelli/OneDrive - Fondazione Istituto Italiano Tecnologia/Code/code_Valente21_to_share'
 sys.path.insert(0,base_directory + '/modules_')
 from numpy import *
 from encdec import *
@@ -14,7 +14,7 @@ import rc_parameters
 ##
 N       = 2
 T       = 50000
-nsteps  = 50000000
+nsteps  = T * 1000
 t       = linspace(0, T, nsteps)
 dt = t[1] - t[0]
 signal_axis = array([1., 1.])/sqrt(2)
@@ -89,6 +89,9 @@ for i_lp in range(len(tau_lowpass)):
                     outsvmacc[:, i_in, i_tau, i_c, i_s, i_lp],_,_ = \
                         decode_from_spikes(sto1[None,:,:], sto2[None,:,:], tau_sampling[i_s], t, nsamples, 'linsvm')
 
-
+##
 objlist = [tau, tau_sampling, Rin, alpha, tau_lowpass, outputrate_stim1, stdout_stim1, CVrateout_stim1, outsvmacc, insvmacc] 
-save_pickle('./results/data_temporal_corr.pkl',objlist)
+save_pickle(base_directory + '/data/data_IO_info/data_across_time_corr.pkl',objlist)
+
+##
+
