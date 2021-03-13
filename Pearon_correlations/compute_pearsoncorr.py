@@ -1,5 +1,5 @@
 import sys
-base_directory = '/Users/giuliobondanelli/OneDrive - Fondazione Istituto Italiano Tecnologia/Code/code_Valente21_github'
+base_directory = '/Users/giuliobondanelli/OneDrive - Fondazione Istituto Italiano Tecnologia/Code/code_Valente21_to_share'
 sys.path.insert(0,base_directory + '/modules_')
 from numpy import *
 from encdec import *
@@ -17,7 +17,7 @@ import warnings
 warnings.simplefilter("ignore")
 
 [tau, tau_sampling, tau_lowpass, Rin, noisecorr, outputrate_stim1, varout_stim1, CVrateout_stim1, outsvmacc, insvmacc] \
-= open_pickle('./datasets/spatial/dataset_noisecorr.pkl')
+= open_pickle(base_directory + '/data/data_pearson_correlations/dataset_alpha.pkl')
 
 STI1 = load(base_directory + '/data/data_pearson_correlations/sti1.npy',allow_pickle = True)
 STI2 = load(base_directory + '/data/data_pearson_correlations/sti2.npy',allow_pickle = True)
@@ -28,11 +28,11 @@ n_trials, n_in, n_tau, n_corr, n_tausampling, n_taulp = insvmacc.shape
 
 t = linspace(0,100000,100000000+1)
 
-i_in = 1
+i_in = 0
 i_tau = 0
 i_c = 0
 i_s = 0
-i_lp = 1
+i_lp = 0
 dt = 0.001
 
 sti1 = STI1[i_in, i_tau, i_c, i_s, i_lp]
@@ -53,10 +53,6 @@ correlations_corr_s1 = nan*ones((nsubsamplings, n_time_divisions-len(lags)+1, n_
 correlations_corr_s2 = nan*ones((nsubsamplings, n_time_divisions-len(lags)+1, n_lags))
 correlations_err_s1  = nan*ones((nsubsamplings, n_time_divisions-len(lags)+1, n_lags))
 correlations_err_s2  = nan*ones((nsubsamplings, n_time_divisions-len(lags)+1, n_lags))
-correction_corr_s1 = nan*ones((nsubsamplings, n_time_divisions-len(lags)+1, n_lags))
-correction_corr_s2 = nan*ones((nsubsamplings, n_time_divisions-len(lags)+1, n_lags))
-correction_err_s1 = nan*ones((nsubsamplings, n_time_divisions-len(lags)+1, n_lags))
-correction_err_s2 = nan*ones((nsubsamplings, n_time_divisions-len(lags)+1, n_lags))
 
 i_trial = 0
 
@@ -98,6 +94,7 @@ for i_sub in range(nsubsamplings):
             s1 = rates_i[0,T1]
             s2 = rates_i[1,T2]
             correlations_corr_s2[i_sub, i_div, i_lag] = pearsonr(s1,s2)[0]
+            print(correlations_corr_s2[i_sub, i_div, i_lag])
 
     #error s1
     for i_div in range(n_time_divisions-len(lags)+1):
@@ -107,6 +104,7 @@ for i_sub in range(nsubsamplings):
             s1 = rates_i[0,T1]
             s2 = rates_i[1,T2]
             correlations_err_s1[i_sub, i_div, i_lag] = pearsonr(s1,s2)[0]
+
     #error s2
     for i_div in range(n_time_divisions-len(lags)+1):
         for i_lag in range(n_lags):
@@ -115,8 +113,11 @@ for i_sub in range(nsubsamplings):
             s1 = rates_i[0,T1]
             s2 = rates_i[1,T2]
             correlations_err_s2[i_sub, i_div, i_lag] = pearsonr(s1,s2)[0]
+            print(correlations_err_s2[i_sub, i_div, i_lag])
+##
+save(base_directory + '/data/data_pearson_correlations/correlations_corr_s1.npy', correlations_corr_s1)
+save(base_directory + '/data/data_pearson_correlations/correlations_corr_s2.npy', correlations_corr_s2)
+save(base_directory + '/data/data_pearson_correlations/correlations_err_s1.npy', correlations_err_s1)
+save(base_directory + '/data/data_pearson_correlations/correlations_err_s2.npy', correlations_err_s2)
+##
 
-save(base_directory + '/data/data_pearon_correlations/correlations_corr_s1.npy', correlations_corr_s1)
-save(base_directory + '/data/data_pearon_correlations/correlations_corr_s2.npy', correlations_corr_s2)
-save(base_directory + '/data/data_pearon_correlations/correlations_err_s1.npy', correlations_err_s1)
-save(base_directory + '/data/data_pearon_correlations/correlations_err_s2.npy', correlations_err_s2)

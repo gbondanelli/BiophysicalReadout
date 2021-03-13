@@ -1,5 +1,5 @@
 import sys
-base_directory = '/Users/giuliobondanelli/OneDrive - Fondazione Istituto Italiano Tecnologia/Code/code_Valente21_github'
+base_directory = '/Users/giuliobondanelli/OneDrive - Fondazione Istituto Italiano Tecnologia/Code/code_Valente21_to_share'
 sys.path.insert(0,base_directory + '/modules_')
 from numpy import *
 from encdec import *
@@ -16,7 +16,7 @@ from scipy.sparse import *
 ##
 N       = 2
 T       = 100000
-nsteps  = 100000000
+nsteps  = T * 1000
 t       = linspace(0, T, nsteps+1)
 dt = t[1] - t[0]
 signal_axis = array([1., 1.])/sqrt(2)
@@ -33,8 +33,8 @@ w_mf = array([0.,0.])
 mu0 = 0.0
 sigma_v = 0.
 
-tau_lowpass = [0.1,0.5] 
-tau = [0.005, 0.007] 
+tau_lowpass = [0.1,0.5]
+tau = [0.005, 0.007]
 tau_sampling = [1.]
 Rin = [2,6]
 alpha = [0.9] 
@@ -95,16 +95,23 @@ for i_lp in range(len(tau_lowpass)):
                     STIM[i_in, i_tau, i_c, i_s, i_lp] = S
                     PRED_STIM[i_in, i_tau, i_c, i_s, i_lp] = pred_stim_o
 
+##
 objlist = [tau, tau_sampling, tau_lowpass, Rin, alpha, outputrate_stim1, stdout_stim1, \
-    CVrateout_stim1, outsvmacc, insvmacc] 
-save_pickle('./datasets/spatial/dataset_alpha.pkl',objlist)
+    CVrateout_stim1, outsvmacc, insvmacc]
+save_pickle(base_directory + '/data/data_pearson_correlations/dataset_alpha.pkl',objlist)
 
-save(base_directory + '/data/data_pearon_correlations/sti1.npy',STI1)
-save(base_directory + '/data/data_pearon_correlations/sti2.npy',STI2)
-save(base_directory + '/data/data_pearon_correlations/sto1.npy',STO1)
-save(base_directory + '/data/data_pearon_correlations/sto2.npy',STO2)
-save(base_directory + '/data/data_pearon_correlations/Pred_Stim.npy',PRED_STIM)
-save(base_directory + '/data/data_pearon_correlations/Stim.npy',STIM)
+save(base_directory + '/data/data_pearson_correlations/sti1.npy',STI1)
+save(base_directory + '/data/data_pearson_correlations/sti2.npy',STI2)
+save(base_directory + '/data/data_pearson_correlations/sto1.npy',STO1)
+save(base_directory + '/data/data_pearson_correlations/sto2.npy',STO2)
+save(base_directory + '/data/data_pearson_correlations/Pred_Stim.npy',PRED_STIM)
+save(base_directory + '/data/data_pearson_correlations/Stim.npy',STIM)
 
 
+
+
+##
+
+
+##
 

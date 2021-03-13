@@ -1,5 +1,5 @@
 import sys
-base_directory = '/Users/giuliobondanelli/OneDrive - Fondazione Istituto Italiano Tecnologia/Code/code_Valente21_github'
+base_directory = '/Users/giuliobondanelli/OneDrive - Fondazione Istituto Italiano Tecnologia/Code/code_Valente21_to_share'
 sys.path.insert(0,base_directory + '/modules_')
 from numpy import *
 from encdec import *
@@ -14,10 +14,10 @@ from scipy.stats import ttest_ind
 
 ##
 
-correlations_corr_s1 =load(base_directory + '../data/data_pearson_correlations/correlations_corr_s1.npy')
-correlations_corr_s2 =load(base_directory + '../data/data_pearson_correlations/correlations_corr_s2.npy')
-correlations_err_s1 =load(base_directory + '../data/data_pearson_correlations/correlations_err_s1.npy')
-correlations_err_s2 =load(base_directory + '../data/data_pearson_correlations/correlations_err_s2.npy')
+correlations_corr_s1 =load(base_directory + '/data/data_pearson_correlations/correlations_corr_s1.npy')
+correlations_corr_s2 =load(base_directory + '/data/data_pearson_correlations/correlations_corr_s2.npy')
+correlations_err_s1 =load(base_directory + '/data/data_pearson_correlations/correlations_err_s1.npy')
+correlations_err_s2 =load(base_directory + '/data/data_pearson_correlations/correlations_err_s2.npy')
 
 n_div = correlations_corr_s1.shape[2]
 
@@ -53,7 +53,7 @@ ylimmax = ax.get_ylim()[1]
 for i in range(len(pvalues)):
     if mcorr[i]>merr[i] and pvalues[i]<0.001:
         ax.plot([bin*arange(n)[i]],[ylimmax],'x',color='#b5b0b1',markersize=3)
-ax.spines['left'].set_bounds(0, .1)
+# ax.spines['left'].set_bounds(0, .1)
 ax.spines['bottom'].set_bounds(0, 400)
 xticks([0,200,400])
 ax.set_xlabel('Lag (ms)')
@@ -63,7 +63,7 @@ tight_layout()
 # savefig('../../Valente_NN/figs/correlations_correct_error.pdf',transparent=True)
 
 ##
-i_lag = 0
+i_lag = 1
 data = [vcorr[:,i_lag],verr[:,i_lag]]
 labels = ['Correct','Error']
 facecolor = ['#4181a6','#d64f7e']
@@ -79,8 +79,5 @@ ax = my_boxplot((1.2,1.9), data, labels, 40, facecolor, colorwhisk, colorcaps, c
 ax.spines['bottom'].set_bounds(1, 2)         
 tight_layout()
 print('p = ', ttest_ind(vcorr[:,i_lag],verr[:,i_lag])[1], 't = ', ttest_ind(vcorr[:,i_lag],verr[:,i_lag])[0])
-print(stats.t(df=200+200-2).ppf((0.05, 0.95)))
-# savefig('../../Valente_NN/figs/correlations_correct_error_fixed_lag_0_submission_march.pdf',transparent=True)
 
-##
 
