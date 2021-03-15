@@ -106,12 +106,3 @@ save(base_directory + '/data/data_pearson_correlations/sto1.npy',STO1)
 save(base_directory + '/data/data_pearson_correlations/sto2.npy',STO2)
 save(base_directory + '/data/data_pearson_correlations/Pred_Stim.npy',PRED_STIM)
 save(base_directory + '/data/data_pearson_correlations/Stim.npy',STIM)
-
-
-
-
-##
-
-
-##
-
