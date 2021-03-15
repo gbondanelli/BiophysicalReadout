@@ -31,7 +31,7 @@ Same as above but running the scripts contained in data_IO_info/across-time/
 
 #### Parameters used in simulations:
 
-N       = 2 # number of input neurons (pools)\
+N       = 2 # _number of input neurons (pools)_\
 T       = 100000 # total simulation time (seconds)\
 nsteps  = T * 1000 # number of time steps (1ms time step)\
 signal_axis = array([1., 1.])/sqrt(2) # axis defined by the difference in mean activity across stimuli\
