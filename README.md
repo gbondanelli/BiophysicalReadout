@@ -11,25 +11,25 @@ The repository contains the code to reproduce Figure 6 d-g, i-l, m-o. It contain
 - a folder Readout_fitting/ for generating panel o
 - a folder data/ that contains the data 
 
-###Panels d-g:
+#### Panels d-g:
 1. Generate the dataset by running data_IO_info/across-pool/compute_IOinfo_across_pool.py
 2. Plot results using data_IO_info/across-pool/plot_IOinfo_across_pool.py
 
-###Panels i-l:
+#### Panels i-l:
 Same as above but running the scripts contained in data_IO_info/across-time/
 
-###Panels m-n:
+#### Panels m-n:
 1. Generate the dataset by running Pearson_correlations/generate_dataset.py
 2. Compute Pearson correlations in correct vs. error trial using Pearson_correlations/compute_pearsoncorr.py
 3. Plot results using Pearson_correlations/plot_pearsoncorr.py
 
-###Panel o:
+#### Panel o:
 
 1. Generate the dataset by running Readout_fitting/generate_dataset_for readouts.py
 2. Compute Pearson correlations in correct vs. error trial using Readout_fitting/fit_readouts.py
 3. Plot results using Readout_fitting/plot_data_readouts.py
 
-###Parameters used in simulations:
+#### Parameters used in simulations:
 
 N       = 2 # number of input neurons (pools)\
 T       = 100000 # total simulation time (seconds)\
